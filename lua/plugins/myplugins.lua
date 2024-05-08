@@ -65,6 +65,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     config = function ()
       require "nvchad.configs.lspconfig"
+      require "config.lspconfig"
     end,
   },
   {
