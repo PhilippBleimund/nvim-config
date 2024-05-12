@@ -1,13 +1,20 @@
-local base = require("nvchad.configs.lspconfig")
-local on_attach = base.on_attach 
-local capabilities = base.capabilities
+local configs = require("nvchad.configs.lspconfig")
 
-local lspconfig = require("lspconfig")
+local on_attach = configs.on_attach
+local on_init = configs.on_init
+local capabilities = configs.capabilities
 
-lspconfig.clangd.setup {
-  on_attach = function (client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
-    on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-}
+local lspconfig = require "lspconfig"
+local servers = { "pyright", "clangd"}
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_init = on_init,
+    on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+        on_attach()
+    end,
+    capabilities = capabilities,
+  }
+end

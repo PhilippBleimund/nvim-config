@@ -16,6 +16,7 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
+        "pyright",
       }
     }
   },
@@ -55,18 +56,19 @@ local plugins = {
     end
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
-    opts = function ()
-      return require "config.null-ls"
+    "neovim/nvim-lspconfig",
+    config = function ()
+      require ("nvchad.configs.lspconfig").defaults()
+      require "config.lspconfig"
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    config = function ()
-      require "nvchad.configs.lspconfig"
-      require "config.lspconfig"
-    end,
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    requires = {{'neovim/nvim-lspconfig'}, {'nvim-lua/plenary.nvim'}},
+    opts = function()
+      require "config.null-ls"
+    end
   },
   {
     "matze/vim-move", lazy = false
