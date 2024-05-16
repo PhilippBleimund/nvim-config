@@ -6,7 +6,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",         -- required
       "sindrets/diffview.nvim",        -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
-     },
+    },
     config = true,
   },
   {
@@ -16,9 +16,17 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
-        "pyright",
       }
     }
+  },
+  {
+    "williamboman/mason-lspconfig",
+    lazy = false,
+    config = function()
+      require("mason-lspconfig").setup {
+        ensure_installed = { "lua_ls", "ruff_lsp", "jedi_language_server", "pylsp" },
+      }
+    end
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -39,7 +47,7 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -57,15 +65,15 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
-    config = function ()
-      require ("nvchad.configs.lspconfig").defaults()
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
       require "config.lspconfig"
     end,
   },
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
-    requires = {{'neovim/nvim-lspconfig'}, {'nvim-lua/plenary.nvim'}},
+    requires = { { 'neovim/nvim-lspconfig' }, { 'nvim-lua/plenary.nvim' } },
     opts = function()
       require "config.null-ls"
     end
