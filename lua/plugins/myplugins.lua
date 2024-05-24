@@ -83,11 +83,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
-<<<<<<< HEAD
-    requires = { { "neovim/nvim-lspconfig" }, { "nvim-lua/plenary.nvim" } },
-=======
     requires = { { 'neovim/nvim-lspconfig' }, { 'nvim-lua/plenary.nvim' } },
->>>>>>> python-lsp
     opts = function()
       require "config.null-ls"
     end,
