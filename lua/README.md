@@ -7,4 +7,9 @@
 3. restart nvim
 4. run `:MasonInstallAll`
 
+3rd party plugins:
+
+    python-lsp-isort: pip install python-lsp-isort
+    pylsp-mypy: pip install pylsp-mypy
+    pylsp-black: pip install python-lsp-black
 it should now work
