@@ -23,7 +23,7 @@ local short_line_limit = 20
 
 -- Shows the current line's diagnostics in a floating window.
 function show_line_diagnostics()
-  vim.lsp.diagnostic.show_line_diagnostics({ severity_limit = "Warning" }, vim.fn.bufnr "")
+  vim.lsp.diagnostic.show_line_diagnostics({ severity = "Warning" }, vim.fn.bufnr "")
 end
 
 -- Prints the first diagnostic for the current line.
@@ -40,7 +40,7 @@ function echo_diagnostic()
       return
     end
 
-    local diags = vim.lsp.diagnostic.get_line_diagnostics(bufnf, line, { severity_limit = "Info" })
+    local diags = vim.lsp.diagnostic.get_line_diagnostics(bufnf, line, { severity = "Info" })
 
     if #diags == 0 then
       -- If we previously echo'd a message, clear it out by echoing an empty
