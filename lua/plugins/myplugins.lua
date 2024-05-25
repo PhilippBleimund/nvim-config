@@ -37,7 +37,7 @@ local plugins = {
       require("mason-lspconfig").setup {
         ensure_installed = { "lua_ls", "ruff_lsp", "jedi_language_server", "pylsp" },
       }
-    end
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -83,7 +83,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
-    requires = { { 'neovim/nvim-lspconfig' }, { 'nvim-lua/plenary.nvim' } },
+    requires = { { "neovim/nvim-lspconfig" }, { "nvim-lua/plenary.nvim" } },
     opts = function()
       require "config.null-ls"
     end,
@@ -91,6 +91,14 @@ local plugins = {
   {
     "matze/vim-move",
     lazy = false,
+  },
+  {
+    "echasnovski/mini.map",
+    version = false,
+    lazy = false,
+    config = function()
+      require "config.miniMap"
+    end,
   },
 }
 return plugins
