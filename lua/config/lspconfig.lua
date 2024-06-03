@@ -6,20 +6,18 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers_change = { "clangd" }
 
 local function setup_servers()
-  for _, lsp in ipairs(servers_change) do
-    lspconfig[lsp].setup {
-      on_init = on_init,
-      on_attach = function(client)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        on_attach()
-      end,
-      capabilities = capabilities,
-    }
-  end
+  lspconfig.clangd.setup {
+    on_init = on_init,
+    --on_attach = function(client)
+    --client.server_capabilities.documentFormattingProvider = false
+    --client.server_capabilities.documentRangeFormattingProvider = false
+    --on_attach()
+    --end,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
   lspconfig.pylsp.setup {
     on_attach = on_attach,
