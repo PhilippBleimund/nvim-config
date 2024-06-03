@@ -18,17 +18,9 @@ local plugins = {
         "codelldb",
         "black",
         "isort",
+        "stylua",
       },
     },
-  },
-  {
-    "williamboman/mason-lspconfig",
-    lazy = false,
-    config = function()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "ruff_lsp", "jedi_language_server", "pylsp" },
-      }
-    end,
   },
   {
     "williamboman/mason-lspconfig",
