@@ -64,5 +64,5 @@ end
 setup_servers()
 setup_diags()
 -- Show diagnostics in popup
-vim.keymap.set("n", "<Leader>d", "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-vim.api.nvim_create_autocmd("CursorMoved", { command = ":lua echo_diagnostic()" })
+vim.keymap.set("n", "<Leader>d", "<cmd>lua require('echo-diagnostics').echo_entire_diagnostic()<CR>")
+vim.api.nvim_create_autocmd("CursorHold", { command = ":lua require('echo-diagnostics').echo_line_diagnostic()" })

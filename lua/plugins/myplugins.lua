@@ -92,5 +92,14 @@ local plugins = {
       require "config.miniMap"
     end,
   },
+  {
+    "seblj/nvim-echo-diagnostics",
+    config = function()
+      require("echo-diagnostics").setup {
+        show_diagnostic_number = true,
+        show_diagnostic_source = false,
+      }
+    end,
+  },
 }
 return plugins
