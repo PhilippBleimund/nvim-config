@@ -26,6 +26,7 @@ function show_line_diagnostics()
   vim.lsp.diagnostic.show_line_diagnostics({ severity = "Warning" }, vim.fn.bufnr "")
 end
 
+-- see https://github.com/seblj/nvim-echo-diagnostics/blob/master/lua/echo-diagnostics.lua for possible solution
 -- Prints the first diagnostic for the current line.
 function echo_diagnostic()
   if echo_timer then
