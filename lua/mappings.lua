@@ -24,4 +24,8 @@ vim.keymap.set("n", "<Leader>mr", MiniMap.refresh, { desc = "MiniMap refresh" })
 vim.keymap.set("n", "<Leader>ms", MiniMap.toggle_side, { desc = "MiniMap toggle side" })
 vim.keymap.set("n", "<Leader>mt", MiniMap.toggle, { desc = "MiniMap toggle" })
 
+vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
+vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
+vim.keymap.set("v", "<leader>c", require("osc52").copy_visual)
+
 return M
