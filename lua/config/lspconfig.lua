@@ -36,7 +36,7 @@ local function setup_servers()
           -- auto-completion options
           jedi_completion = { fuzzy = true },
           -- import sorting
-          pyls_isort = { enabled = false },
+          pyls_isort = { enabled = true },
           pycodestyle = {
             enabled = true,
             ignore = { "E501", "E231" },
