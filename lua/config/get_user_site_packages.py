@@ -1,3 +1,3 @@
 import site
 
-print(site.getusersitepackages())
+print(site.getsitepackages())
