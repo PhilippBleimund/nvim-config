@@ -131,5 +131,19 @@ local plugins = {
       { ",v", "<cmd>VenvSelect<cr>" },
     },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "python",
+        "javascript",
+      },
+    },
+  },
 }
 return plugins
