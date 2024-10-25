@@ -74,6 +74,9 @@ local plugins = {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     event = "VeryLazy",
     requires = { { "neovim/nvim-lspconfig" }, { "nvim-lua/plenary.nvim" } },
     opts = function()

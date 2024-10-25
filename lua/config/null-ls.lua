@@ -1,5 +1,6 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require "null-ls"
+
 local sources = {
   null_ls.builtins.formatting.clang_format.with {
     extra_args = {
@@ -7,11 +8,13 @@ local sources = {
     },
   },
   null_ls.builtins.formatting.stylua,
-  null_ls.builtins.formatting.black.with {
-    extra_args = {
-      "--line-length=120",
-    },
-  },
+  -- install pip install --upgrade autopep8 to be able to use
+  require "none-ls.formatting.autopep8",
+  --null_ls.builtins.formatting.black.with {
+  --  extra_args = {
+  --    "--line-length=120",
+  --  },
+  --},
 }
 
 null_ls.setup {
