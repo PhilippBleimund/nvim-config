@@ -9,6 +9,7 @@ local lspconfig = require "lspconfig"
 
 local function setup_servers()
   lspconfig.clangd.setup {
+    cmd = { "clangd", "--offset-encoding=utf-16" },
     on_init = on_init,
     --on_attach = function(client)
     --client.server_capabilities.documentFormattingProvider = false
