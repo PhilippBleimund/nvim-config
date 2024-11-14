@@ -27,7 +27,7 @@ local plugins = {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "ruff_lsp", "jedi_language_server", "pylsp" },
+        ensure_installed = { "lua_ls", "pyright" },
       }
     end,
   },

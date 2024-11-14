@@ -20,37 +20,7 @@ local function setup_servers()
     capabilities = capabilities,
   }
 
-  lspconfig.pylsp.setup {
-    on_attach = on_attach,
-    settings = {
-      pylsp = {
-        plugins = {
-          -- formatter options
-          black = { enabled = false },
-          autopep8 = { enabled = false },
-          yapf = { enabled = false },
-          -- linter options
-          pylint = { enabled = true, executable = "pylint" },
-          pyflakes = { enabled = false },
-          -- type checker
-          pylsp_mypy = { enabled = true },
-          -- auto-completion options
-          jedi_completion = { fuzzy = true },
-          -- import sorting
-          pyls_isort = { enabled = true },
-          pycodestyle = {
-            enabled = true,
-            ignore = { "E501", "E231" },
-            maxLineLength = 120,
-          },
-        },
-      },
-    },
-    flags = {
-      debounce_text_changes = 200,
-    },
-    capabilities = capabilities,
-  }
+  lspconfig.pyright.setup {}
 end
 
 local function setup_diags()
