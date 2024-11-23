@@ -9,7 +9,7 @@ local sources = {
   },
   null_ls.builtins.formatting.stylua,
   -- install pip install --upgrade autopep8 to be able to use
-  require "none-ls.formatting.autopep8",
+  require "config.autopep8",
   --null_ls.builtins.formatting.black.with {
   --  extra_args = {
   --    "--line-length=120",
