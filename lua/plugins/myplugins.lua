@@ -13,12 +13,7 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "clangd",
-        "clang-format",
         "codelldb",
-        "black",
-        "isort",
-        "stylua",
       },
     },
   },
@@ -27,8 +22,45 @@ local plugins = {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "pyright" },
+        ensure_installed = {
+          "lua_ls",
+          "pyright",
+          "clangd",
+        },
+        automatic_installation = true,
       }
+    end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    config = function()
+      require("mason-null-ls").setup {
+        ensure_installed = {
+          "black",
+          "isort",
+          "stylua",
+          "clang-format",
+          "prettier",
+          "autopep8",
+        },
+        automatic_installation = true,
+      }
+    end,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    event = "VeryLazy",
+    requires = { { "neovim/nvim-lspconfig" }, { "nvim-lua/plenary.nvim" } },
+    opts = function()
+      require "config.null-ls"
     end,
   },
   {
@@ -70,17 +102,6 @@ local plugins = {
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "config.lspconfig"
-    end,
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    event = "VeryLazy",
-    requires = { { "neovim/nvim-lspconfig" }, { "nvim-lua/plenary.nvim" } },
-    opts = function()
-      require "config.null-ls"
     end,
   },
   {
