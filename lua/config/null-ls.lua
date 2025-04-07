@@ -15,6 +15,7 @@ local sources = {
   --    "--line-length=120",
   --  },
   --},
+  null_ls.builtins.formatting.prettier,
 }
 
 null_ls.setup {
