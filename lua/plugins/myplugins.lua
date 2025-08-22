@@ -26,6 +26,7 @@ local plugins = {
           "lua_ls",
           "pyright",
           "clangd",
+          -- "asm-lsp", -- has to be manually installed
         },
         automatic_installation = true,
       }

@@ -21,6 +21,7 @@ local function setup_servers()
   }
 
   lspconfig.pyright.setup {}
+  lspconfig.asm_lsp.setup {}
 end
 
 local function setup_diags()
