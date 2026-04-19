@@ -3,8 +3,8 @@ local plugins = {
     "NeogitOrg/neogit",
     event = "VeryLazy",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
     },
     config = true,
@@ -65,40 +65,6 @@ local plugins = {
     end,
   },
   {
-    "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "mfussenegger/nvim-dap",
-    },
-    opts = {
-      handlers = {},
-    },
-  },
-  {
-    "mfussenegger/nvim-dap",
-    config = function(_, _) end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-    config = function()
-      local dap = require "dap"
-      local dapui = require "dapui"
-      dapui.setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -110,14 +76,6 @@ local plugins = {
     lazy = false,
   },
   {
-    "echasnovski/mini.map",
-    version = false,
-    lazy = false,
-    config = function()
-      require "config.miniMap"
-    end,
-  },
-  {
     "seblj/nvim-echo-diagnostics",
     config = function()
       require("echo-diagnostics").setup {
@@ -127,22 +85,10 @@ local plugins = {
     end,
   },
   {
-    "ojroques/nvim-osc52",
-    config = function()
-      require("osc52").setup()
-      local function copy()
-        if vim.v.event.operator == "y" and vim.v.event.regname == "" then
-          require("osc52").copy_register '"'
-        end
-      end
-
-      vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "c",
         "vim",
         "lua",
         "vimdoc",
@@ -176,13 +122,6 @@ local plugins = {
       vim.keymap.set("n", "<leader>aa", "<cmd>AerialOpen<CR>")
       vim.keymap.set("n", "<leader>ac", "<cmd>AerialClose<CR>")
     end,
-  },
-  {
-    "ray-x/navigator.lua",
-    requires = {
-      { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-      { "neovim/nvim-lspconfig" },
-    },
   },
 }
 return plugins
