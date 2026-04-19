@@ -9,7 +9,7 @@ local lspconfig = vim.lsp
 
 -- Clangd with utf-16 fix
 vim.lsp.config["clangd"] = {
-  cmd = { "clangd", "--offset-encoding=utf-16" },
+  cmd = { "clangd", "--offset-encoding=utf-16, --compile-commands-dir=build" },
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
