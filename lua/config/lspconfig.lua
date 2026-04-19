@@ -5,23 +5,37 @@ local on_attach = configs.on_attach
 local on_init = configs.on_init
 local capabilities = configs.capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = vim.lsp
+
+-- Clangd with utf-16 fix
+vim.lsp.config["clangd"] = {
+  cmd = { "clangd", "--offset-encoding=utf-16" },
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
+-- Pyright
+vim.lsp.config["pyright"] = {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+
+-- Assembly LSP
+vim.lsp.config["asm_lsp"] = {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
 
 local function setup_servers()
-  lspconfig.clangd.setup {
-    cmd = { "clangd", "--offset-encoding=utf-16" },
-    on_init = on_init,
-    --on_attach = function(client)
-    --client.server_capabilities.documentFormattingProvider = false
-    --client.server_capabilities.documentRangeFormattingProvider = false
-    --on_attach()
-    --end,
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  lspconfig.pyright.setup {}
-  lspconfig.asm_lsp.setup {}
+  for name, config in pairs(vim.lsp.config) do
+    -- Only start LSPs we defined above
+    if config.on_attach == on_attach then
+      vim.lsp.start(config)
+    end
+  end
 end
 
 local function setup_diags()

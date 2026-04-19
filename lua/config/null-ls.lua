@@ -1,13 +1,13 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local null_ls = require "null-ls"
+local none_ls = require "null-ls"
 
 local sources = {
-  null_ls.builtins.formatting.clang_format.with {
+  none_ls.builtins.formatting.clang_format.with {
     extra_args = {
       "-style={BasedOnStyle: LLVM, AllowShortFunctionsOnASingleLine: None}",
     },
   },
-  null_ls.builtins.formatting.stylua,
+  none_ls.builtins.formatting.stylua,
   -- install pip install --upgrade autopep8 to be able to use
   require "config.autopep8",
   --null_ls.builtins.formatting.black.with {
@@ -15,14 +15,14 @@ local sources = {
   --    "--line-length=120",
   --  },
   --},
-  null_ls.builtins.formatting.prettier,
+  none_ls.builtins.formatting.prettier,
 }
 
-null_ls.setup {
+none_ls.setup {
   sources = sources,
   debug = true,
   on_attach = function(client, bufnr)
-    if client.supports_method "textDocument/formatting" then
+    if client:supports_method "textDocument/formatting" then
       vim.api.nvim_clear_autocmds {
         group = augroup,
         buffer = bufnr,
