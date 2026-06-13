@@ -3,8 +3,8 @@ local plugins = {
     "NeogitOrg/neogit",
     event = "VeryLazy",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
     },
     config = true,
@@ -85,19 +85,28 @@ local plugins = {
     end,
   },
   {
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
+    lazy = false,
+    config = function()
+      require("tree-sitter-manager").setup {
+        auto_install = true,
+        ensure_installed = {
+          "c",
+          "vim",
+          "lua",
+          "vimdoc",
+          "html",
+          "css",
+          "python",
+          "javascript",
+        },
+      }
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "c",
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "python",
-        "javascript",
-      },
-    },
+    enabled = false,
   },
   {
     "stevearc/aerial.nvim",
